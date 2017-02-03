@@ -7,31 +7,36 @@ function getPrice(currLevel) {
 function onSubmit() {
     
     var denseBaseMult = document.getElementById("dMultiplier");
+    //Input holding the base multiplier given.
     var denseBaseLevel = Math.round(Math.log2(denseBaseMult.value));
     console.log(denseBaseLevel);
     var denseCurrLevel = denseBaseLevel;
+    //Level at the start and level after optimizations.
 
     var gravBaseMult = document.getElementById("gMultiplier");
+    //Input holding the base multiplier given.
     var gravBaseLevel = Math.log(gravBaseMult.value) / Math.log(1.1);
     var gravCurrLevel = gravBaseLevel;
+    //Level at the start and level after optimizations.
 
     var currMeta = document.getElementById("currMeta").value;
 
     var updated = false;
+    //Was meta used this cycle?
 
     var output = document.getElementById("result");
+    //Text box to put the results in.
     
     if ((currMeta < getPrice(denseBaseLevel)) && (currMeta < getPrice(gravBaseLevel))) {
         output.value = "You cannot afford any upgrades!";
+        //If the user cannot afford either upgrade, exit.
     } else {
         while ((currMeta >= getPrice(denseCurrLevel)) || (currMeta >= getPrice(gravCurrLevel))) {
-            console.log((Math.pow(2, denseCurrLevel + 1)) * (Math.pow(1.1, (gravCurrLevel))) * (1 + ((currMeta - getPrice(denseCurrLevel)) * 2) / 10)
-            + " Is greater than? " + (Math.pow(2, denseCurrLevel)) * (Math.pow(1.1, gravCurrLevel)) * (1 + ((currMeta * 2) / 10)));
-            
-            
+            //While any upgrade is purchasable.
             updated = false;
 
             if (((Math.pow(2, denseCurrLevel + 1)) * (Math.pow(1.1, gravCurrLevel)) * (1 + (((currMeta - getPrice(denseCurrLevel)) * 2) / 10)))
+            //All multiplier calculations are done in the form (Density value) * (Gravity value) * (1 + Meta bonus).
             >= 
             ((Math.pow(2, denseCurrLevel)) * (Math.pow(1.1, gravCurrLevel)) * (1 + ((currMeta * 2) / 10)))) {
                 currMeta -= getPrice(denseCurrLevel);
