@@ -8,7 +8,7 @@ function onSubmit() {
     
     var denseBaseMult = document.getElementById("dMultiplier");
     //Input holding the base multiplier given.
-    var denseBaseLevel = Math.round(Math.log2(denseBaseMult.value));
+    var denseBaseLevel = Math.log2(denseBaseMult.value);
     console.log(denseBaseLevel);
     var denseCurrLevel = denseBaseLevel;
     //Level at the start and level after optimizations.
@@ -58,7 +58,7 @@ function onSubmit() {
 
         output.value = "You need to upgrade density " + (denseCurrLevel - denseBaseLevel) + " Times. \n"
         + "You need to upgrade gravity " + (gravCurrLevel - gravBaseLevel) + " Times. \n"
-        + "And you will have " + currMeta + " Meta left over.";
+        + "And you will have " + Math.round(currMeta * 100) / 100 + " Meta left over.";
     }
 }
 
