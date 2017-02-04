@@ -56,8 +56,8 @@ function onSubmit() {
             }
         }
 
-        output.value = "You need to upgrade density " + (denseCurrLevel - denseBaseLevel) + " Times. \n"
-        + "You need to upgrade gravity " + (gravCurrLevel - gravBaseLevel) + " Times. \n"
+        output.value = "You need to upgrade density " + Math.round(denseCurrLevel - denseBaseLevel) + " Times. \n"
+        + "You need to upgrade gravity " + Math.round(gravCurrLevel - gravBaseLevel) + " Times. \n"
         + "And you will have " + Math.round(currMeta * 100) / 100 + " Meta left over.";
     }
 }
