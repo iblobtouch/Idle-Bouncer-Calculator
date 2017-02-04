@@ -1,5 +1,9 @@
-function getPrice(currLevel) {
+function getDensePrice(currLevel) {
     return (4 * Math.pow(1.3, currLevel));
+}
+
+function getGravPrice(currLevel) {
+    return (5 * Math.pow(1.3, currLevel));
 }
 
 //The price of the next level of a given meta upgrade
@@ -27,27 +31,30 @@ function onSubmit() {
     var output = document.getElementById("result");
     //Text box to put the results in.
     
-    if ((currMeta < getPrice(denseBaseLevel)) && (currMeta < getPrice(gravBaseLevel))) {
+    if ((currMeta < getDensePrice(denseBaseLevel)) && (currMeta < getGravPrice(gravBaseLevel))) {
         output.value = "You cannot afford any upgrades!";
         //If the user cannot afford either upgrade, exit.
     } else {
-        while ((currMeta >= getPrice(denseCurrLevel)) || (currMeta >= getPrice(gravCurrLevel))) {
+        while ((currMeta >= getDensePrice(denseCurrLevel)) || (currMeta >= getGravPrice(gravCurrLevel))) {
             //While any upgrade is purchasable.
             updated = false;
 
-            if (((Math.pow(2, denseCurrLevel + 1)) * (Math.pow(1.1, gravCurrLevel)) * (1 + (((currMeta - getPrice(denseCurrLevel)) * 2) / 10)))
+            if (((Math.pow(2, denseCurrLevel + 1)) * (Math.pow(1.1, gravCurrLevel)) * (1 + (((currMeta - getDensePrice(denseCurrLevel)) * 2) / 10)))
             //All multiplier calculations are done in the form (Density value) * (Gravity value) * (1 + Meta bonus).
             >= 
-            ((Math.pow(2, denseCurrLevel)) * (Math.pow(1.1, gravCurrLevel)) * (1 + ((currMeta * 2) / 10)))) {
-                currMeta -= getPrice(denseCurrLevel);
+            ((Math.pow(2, denseCurrLevel)) * (Math.pow(1.1, gravCurrLevel)) * (1 + ((currMeta * 2) / 10)))
+            &&
+            ((Math.pow(2, denseCurrLevel + 1)) * (Math.pow(1.1, gravCurrLevel)) * (1 + (((currMeta - getDensePrice(denseCurrLevel)) * 2) / 10)))
+            //All multiplier calculations are done in the form (Density value) * (Gravity value) * (1 + Meta bonus).
+            >= 
+            ((Math.pow(2, denseCurrLevel)) * (Math.pow(1.1, gravCurrLevel + 1)) * (1 + (((currMeta - getGravPrice(gravCurrLevel)) * 2) / 10)))) {
+                currMeta -= getDensePrice(denseCurrLevel);
                 denseCurrLevel += 1;
                 updated = true;
-            }
-            
-            if (((Math.pow(2, denseCurrLevel)) * (Math.pow(1.1, gravCurrLevel + 1)) * (1 + (((currMeta - getPrice(gravCurrLevel)) * 2) / 10)))
+            } else if (((Math.pow(2, denseCurrLevel)) * (Math.pow(1.1, gravCurrLevel + 1)) * (1 + (((currMeta - getGravPrice(gravCurrLevel)) * 2) / 10)))
             >= 
             ((Math.pow(2, denseCurrLevel)) * (Math.pow(1.1, gravCurrLevel)) * (1 + ((currMeta * 2) / 10)))) {
-                currMeta -= getPrice(gravCurrLevel);
+                currMeta -= getGravPrice(gravCurrLevel);
                 gravCurrLevel += 1;
                 updated = true;
             }
