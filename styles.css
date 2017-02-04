@@ -1,3 +1,48 @@
+html {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 label {
     display:block;
+    margin-top: 10px;
+}
+
+button {
+    background-color: #337AB7;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 2px;
+    width:50%;
+    margin-left: 70px;
+}
+
+#result {
+    border: 1px solid black;
+	line-height: 14px;
+	padding: 10px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+#mainContent {
+    width: 500px;
+    height: 350px;
+    display:block;
+    margin: auto;
+}
+
+#notes {
+	border: 1px solid black;
+	line-height: 14px;
+	padding: 10px;
+	position: fixed;
+	bottom: 0;
+	width: 420px;
+    border-radius: 5px;
 }

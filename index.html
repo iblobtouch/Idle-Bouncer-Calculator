@@ -4,18 +4,29 @@
 		<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     </head>
     <body>
-        <label for = "dMultiplier">Current Density Value.</label>
-        <input id = "dMultiplier" type = "number">
+        <div id = "mainContent">
+            <label for = "dMultiplier">Current Density Value.</label>
+            <textarea rows="1" cols="50" id = "dMultiplier" data-tooltip="For example: x1 if no upgrades.">1</textarea>
+
+            <label for = "gMultiplier">Current Gravity Value.</label>
+            <textarea rows="1" cols="50"  id = "gMultiplier" data-tooltip="For example: x1 if no upgrades.">1</textarea>
+
+            <label for = "currMeta">Current amount of meta.</label>
+            <textarea rows="1" cols="50" id = "currMeta" data-tooltip="Current amount of meta.">6</textarea>
+            <br>
+            <button onclick="onSubmit()" >Submit</button>
+            <br>
+            <textarea rows="3" cols="50" id = "result"></textarea>
+            <script src="Calculator.js"></script>
+        </div>
         
-        <label for = "gMultiplier">Current Gravity Value.</label>
-        <input id = "gMultiplier" type = "number">
-        
-        <label for = "currMeta">Current amount of meta.</label>
-        <input id = "currMeta" type = "number">
+        <p id="notes">
+        How to use:<br>
+        Step 1: Look in your meta tab and find the 2 values for "density" and "gravity".<br><br>
+        Step 2: Look at your current meta, type it in and press submit.<br><br>
+        Step 3: You should get a result back telling you what to do, simply buy as many upgrades as it specifies.<br><br>
         <br>
-        <button onclick="onSubmit()" >Submit</button>
-        <br>
-        <textarea rows="4" cols="50" id = "result"></textarea>
-        <script src="Calculator.js"></script>
+        DISCLAIMER! This Calculator assumes that the starting and ending value for meta is the value you use.<br>If you want to buy other upgrades, buy them first, then add the updated amount to the calculator.
+        </p>
     </body>
 </html>
